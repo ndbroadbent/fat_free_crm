@@ -98,7 +98,7 @@ describe CustomField do
       Contact.should_receive(:reset_column_information)
 
       contact = Factory.build(:contact)
-      contact.cf_another_new_field.should == nil
+      lambda { contact.cf_another_new_field }.should raise_error(NoMethodError)
     end
   end
 end

@@ -112,6 +112,7 @@ class Admin::FieldsController < Admin::ApplicationController
   #----------------------------------------------------------------------------
   def destroy
     @field = CustomField.find(params[:id])
+    @field.destroy
 
     respond_to do |format|
       format.js   # destroy.js.rjs

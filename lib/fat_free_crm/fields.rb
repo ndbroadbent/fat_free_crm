@@ -57,13 +57,9 @@ module FatFreeCRM
       end
 
       def method_missing(method_id, *args, &block)
-        if method_id.to_s =~ /^cf_/
-          # Refresh columns and try again.
-          self.class.reset_column_information
-          self.respond_to?(method_id) ? self.send(method_id, *args) : nil
-        else
-          super
-        end
+        # Refresh columns
+        self.class.reset_column_information if method_id.to_s =~ /^cf_/
+        super
       end
     end
   end
